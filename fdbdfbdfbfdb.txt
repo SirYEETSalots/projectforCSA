@@ -1,0 +1,28 @@
+import java.awt.event.KeyEvent;
+public class Bullet {
+    private double xCenter;
+    private double yCenter;
+    private double speed;
+    private double slope;
+    private double diffY;
+    public Bullet(double xCenter,double yCenter, double slope){
+        this.xCenter = xCenter;
+        this.yCenter = yCenter;
+        this.speed = 5;
+        this.slope = slope;
+        this.diffY = 0;
+    }
+    public void calcBullet(double timeElapsed, boolean upY, boolean upX){
+
+        if (upY) {
+            diffY = ((Math.sqrt(4 * Math.pow(speed, 2) - 3 * Math.pow(slope, 2)) - slope) / 2);
+        } else{
+            diffY = (-1 * (Math.sqrt((4 * Math.pow(speed, 2) - 3 * Math.pow(slope, 2)) + slope)) / 2);
+        }
+        yCenter += diffY;
+        xCenter += diffY/slope;
+    }
+    public void drawBullet(){
+        StdDraw.filledCircle(xCenter,yCenter,0.5);
+    }
+}
